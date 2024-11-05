@@ -1,6 +1,5 @@
 import 'dart:developer';
-import 'package:better_player/better_player.dart';
-import '../../upload_video.dart';
+import 'package:cached_video_player_plus/cached_video_player_plus.dart';
 import 'package:flutter/material.dart';
 import 'video_page.dart';
 
@@ -14,7 +13,7 @@ class TikTokStyleApp extends StatefulWidget {
 class TikTokStyleAppState extends State<TikTokStyleApp> {
   int _selectedIndex = 0;
 
-  BetterPlayerController?
+  CachedVideoPlayerPlusController?
       _currentController;
 
   void _onItemTapped(int index) {

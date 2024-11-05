@@ -765,7 +765,7 @@ abstract class _TogglePlayPause implements PreloadEvent {
 /// @nodoc
 mixin _$PreloadState {
   List<String> get urls => throw _privateConstructorUsedError;
-  Map<int, BetterPlayerController?> get controllers =>
+  Map<int, CachedVideoPlayerPlusController?> get controllers =>
       throw _privateConstructorUsedError;
   int get focusedIndex => throw _privateConstructorUsedError;
   int get reloadCounter => throw _privateConstructorUsedError;
@@ -785,7 +785,7 @@ abstract class $PreloadStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<String> urls,
-      Map<int, BetterPlayerController?> controllers,
+      Map<int, CachedVideoPlayerPlusController?> controllers,
       int focusedIndex,
       int reloadCounter,
       bool isLoading,
@@ -820,7 +820,7 @@ class _$PreloadStateCopyWithImpl<$Res, $Val extends PreloadState>
       controllers: null == controllers
           ? _value.controllers
           : controllers // ignore: cast_nullable_to_non_nullable
-              as Map<int, BetterPlayerController?>,
+              as Map<int, CachedVideoPlayerPlusController?>,
       focusedIndex: null == focusedIndex
           ? _value.focusedIndex
           : focusedIndex // ignore: cast_nullable_to_non_nullable
@@ -851,7 +851,7 @@ abstract class _$$PreloadStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {List<String> urls,
-      Map<int, BetterPlayerController?> controllers,
+      Map<int, CachedVideoPlayerPlusController?> controllers,
       int focusedIndex,
       int reloadCounter,
       bool isLoading,
@@ -884,7 +884,7 @@ class __$$PreloadStateImplCopyWithImpl<$Res>
       controllers: null == controllers
           ? _value.controllers
           : controllers // ignore: cast_nullable_to_non_nullable
-              as Map<int, BetterPlayerController?>,
+              as Map<int, CachedVideoPlayerPlusController?>,
       focusedIndex: null == focusedIndex
           ? _value.focusedIndex
           : focusedIndex // ignore: cast_nullable_to_non_nullable
@@ -919,7 +919,7 @@ class _$PreloadStateImpl implements _PreloadState {
   @override
   final List<String> urls;
   @override
-  final Map<int, BetterPlayerController?> controllers;
+  final Map<int, CachedVideoPlayerPlusController?> controllers;
   @override
   final int focusedIndex;
   @override
@@ -972,7 +972,7 @@ class _$PreloadStateImpl implements _PreloadState {
 abstract class _PreloadState implements PreloadState {
   factory _PreloadState(
       {required final List<String> urls,
-      required final Map<int, BetterPlayerController?> controllers,
+      required final Map<int, CachedVideoPlayerPlusController?> controllers,
       required final int focusedIndex,
       required final int reloadCounter,
       required final bool isLoading,
@@ -981,7 +981,7 @@ abstract class _PreloadState implements PreloadState {
   @override
   List<String> get urls;
   @override
-  Map<int, BetterPlayerController?> get controllers;
+  Map<int, CachedVideoPlayerPlusController?> get controllers;
   @override
   int get focusedIndex;
   @override

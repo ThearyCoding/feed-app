@@ -1,4 +1,5 @@
-import 'package:better_player/better_player.dart';
+
+import 'package:cached_video_player_plus/cached_video_player_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +16,7 @@ class VideoWidget extends StatefulWidget {
   });
 
   final bool isLoading;
-  final BetterPlayerController controller;
+  final CachedVideoPlayerPlusController controller;
   final bool isPaused;
 
   @override
@@ -30,7 +31,7 @@ class VideoWidgetState extends State<VideoWidget> {
     setState(() {
       _speedFeedback = "Speed: ${speed}x";
     });
-    widget.controller.setSpeed(speed);
+    widget.controller.setPlaybackSpeed(speed);
   }
 
   void _clearFeedback() {
@@ -62,8 +63,8 @@ class VideoWidgetState extends State<VideoWidget> {
         children: [
           Center(
             child: AspectRatio(
-              aspectRatio: widget.controller.videoPlayerController!.value.aspectRatio,
-              child: BetterPlayer(controller: widget.controller),
+              aspectRatio: widget.controller.value.aspectRatio,
+              child: CachedVideoPlayerPlus( widget.controller),
             ),
           ),
           if (widget.isLoading)

@@ -1,13 +1,13 @@
+import 'package:cached_video_player_plus/cached_video_player_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
-import 'package:preload_page_view/preload_page_view.dart';
 import 'bloc/preload_bloc.dart';
 import 'utils/custom_linear_progress_indicator.dart';
-import 'package:better_player/better_player.dart';
 
+import 'video_widget.dart';
 class VideoPage extends StatefulWidget {
-  final Function(BetterPlayerController) onControllerChanged;
+  final Function(CachedVideoPlayerPlusController) onControllerChanged;
 
   const VideoPage({super.key, required this.onControllerChanged});
 
@@ -21,25 +21,17 @@ class _VideoPageState extends State<VideoPage> {
   bool _isBuffering = false;
   bool _isMuted = false;
 
- void _updateProgress(BetterPlayerEvent event) {
+  void _updateProgress(CachedVideoPlayerPlusController controller) {
     if (mounted) {
       setState(() {
-        // Update position and duration based on event type
-        if (event.betterPlayerEventType == BetterPlayerEventType.progress) {
-          _position = event.parameters!['progress'] ?? Duration.zero;
-          _duration = event.parameters!['duration'] ?? Duration.zero;
-        }
-        // Update buffering status based on event type
-        if (event.betterPlayerEventType == BetterPlayerEventType.bufferingStart) {
-          _isBuffering = true;
-        } else if (event.betterPlayerEventType == BetterPlayerEventType.bufferingEnd) {
-          _isBuffering = false;
-        }
+        _position = controller.value.position;
+        _duration = controller.value.duration;
+        _isBuffering = controller.value.isBuffering;
       });
     }
   }
 
-  void _toggleMute(BetterPlayerController controller) {
+  void _toggleMute(CachedVideoPlayerPlusController controller) {
     setState(() {
       _isMuted = !_isMuted;
       controller.setVolume(_isMuted ? 0 : 1);
@@ -50,7 +42,7 @@ class _VideoPageState extends State<VideoPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<PreloadBloc, PreloadState>(
       builder: (context, state) {
-        return PreloadPageView.builder(
+        return PageView.builder(
           itemCount: state.urls.length,
           scrollDirection: Axis.vertical,
           onPageChanged: (index) {
@@ -58,17 +50,18 @@ class _VideoPageState extends State<VideoPage> {
                 .add(PreloadEvent.onVideoIndexChanged(index));
           },
           itemBuilder: (context, index) {
-            final bool isLoading = (state.isLoading && index == state.urls.length - 1);
+            final bool isLoading =
+                (state.isLoading && index == state.urls.length - 1);
             final controller = state.controllers[index];
 
             if (controller == null) {
               return const SizedBox();
             }
             widget.onControllerChanged(controller);
-            final bool isPaused = !(controller.isPlaying() ?? false);
+            final bool isPaused = !controller.value.isPlaying;
             final thumbRadius = isPaused ? 5.0 : 0.0;
 
-            controller.addEventsListener((event) => _updateProgress(event));
+            controller.addListener(() => _updateProgress(controller));
 
             return isLoading
                 ? const Center(
@@ -77,9 +70,10 @@ class _VideoPageState extends State<VideoPage> {
                 : Stack(
                     clipBehavior: Clip.none,
                     children: [
-                      BetterPlayer(
+                      VideoWidget(
+                        isLoading: isLoading,
                         controller: controller,
-                        
+                        isPaused: isPaused,
                       ),
                       Positioned(
                         right: 16,
@@ -98,9 +92,13 @@ class _VideoPageState extends State<VideoPage> {
                             const SizedBox(height: 16),
                             GestureDetector(
                               onTap: () async {
-                               await BetterPlayerController.of(context).clearCache();
+                                await CachedVideoPlayerPlusController
+                                    .clearAllCache();
+
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text("Cache cleared")));
+                                    SnackBar(
+                                        content:
+                                            Text("Cached Video is clean all")));
                               },
                               child: const Column(
                                 children: [

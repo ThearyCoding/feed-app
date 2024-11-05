@@ -4,7 +4,7 @@ part of 'preload_bloc.dart';
 class PreloadState with _$PreloadState {
   factory PreloadState({
     required List<String> urls,
-    required Map<int, BetterPlayerController?> controllers,
+    required Map<int, CachedVideoPlayerPlusController?> controllers,
     required int focusedIndex,
     required int reloadCounter,
     required bool isLoading,
