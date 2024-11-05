@@ -37,7 +37,6 @@ dependencies:
   cupertino_icons: ^1.0.6
   injectable: ^2.5.0
   flutter_bloc: ^8.1.6
-  better_player: ^0.0.84
   get_it: ^8.0.2
   preload_page_view: ^0.2.0
   audio_video_progress_bar: ^2.0.3
