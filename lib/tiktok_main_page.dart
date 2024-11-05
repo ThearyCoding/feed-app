@@ -61,7 +61,7 @@ class TikTokStyleAppState extends State<TikTokStyleApp> {
                 },
               ),
               const Placeholder(),
-              const UploadVideo(),
+             const Placeholder(),
               const Placeholder(),
               const Placeholder(),
             ],
