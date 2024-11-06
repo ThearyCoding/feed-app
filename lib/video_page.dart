@@ -86,7 +86,7 @@ class _VideoPageState extends State<VideoPage> {
                               child: const CircleAvatar(
                                 radius: 20,
                                 backgroundImage:
-                                    AssetImage('assets/No-Profile.png'),
+                                    AssetImage('assets/no-profile.png'),
                               ),
                             ),
                             const SizedBox(height: 16),
