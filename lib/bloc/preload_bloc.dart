@@ -9,7 +9,6 @@ import 'package:injectable/injectable.dart';
 import '../core/constants.dart';
 import '../main.dart';
 import '../services/api/api_service.dart';
-import 'package:better_player/better_player.dart';
 part 'preload_bloc.freezed.dart';
 part 'preload_event.dart';
 part 'preload_state.dart';
