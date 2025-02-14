@@ -6,6 +6,7 @@ import 'bloc/preload_bloc.dart';
 import 'utils/custom_linear_progress_indicator.dart';
 
 import 'video_widget.dart';
+
 class VideoPage extends StatefulWidget {
   final Function(CachedVideoPlayerPlusController) onControllerChanged;
 
@@ -95,8 +96,9 @@ class _VideoPageState extends State<VideoPage> {
                                 await CachedVideoPlayerPlusController
                                     .clearAllCache();
 
+                                // ignore: use_build_context_synchronously
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                         content:
                                             Text("Cached Video is clean all")));
                               },

@@ -10,7 +10,7 @@ import 'core/constants.dart';
 import 'injection.dart';
 import 'services/api/api_service.dart';
 import 'services/api/navigation_service.dart';
-import 'tiktok_main_page.dart';
+import 'main_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
