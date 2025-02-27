@@ -124,9 +124,10 @@ packages:
   cached_video_player_plus:
     dependency: "direct main"
     description:
-      path: "packages/cached_video_player_plus"
-      relative: true
-    source: path
+      name: cached_video_player_plus
+      sha256: "451ee48bdbd28fac3d49b4389929c44d259b1def5be6dab0c5bfd3ae1f05e8b5"
+      url: "https://pub.dev"
+    source: hosted
     version: "3.0.3"
   characters:
     dependency: transitive
