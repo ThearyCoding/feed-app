@@ -125,9 +125,7 @@ class PreloadBloc extends Bloc<PreloadEvent, PreloadState> {
       /// Create new controller
       final CachedVideoPlayerPlusController controller =
           CachedVideoPlayerPlusController.networkUrl(
-        Uri.parse(state.urls[index]),
-        cacheKey: state.urls[index],
-      );
+        Uri.parse(state.urls[index]),      );
 
       /// Add to [controllers] list
       state.controllers[index] = controller;
